@@ -24,4 +24,5 @@ export interface Place {
   description: string;
   seeMoreLink: string;
   position: LatLngExpression;
+  quantity: number;
 }

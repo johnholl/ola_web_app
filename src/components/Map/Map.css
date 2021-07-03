@@ -2,3 +2,21 @@
 .map__container {
   width: 100vw;
 }
+
+.circle {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  text-align: center;
+  border: 3px solid #4999a4; 
+  font-size: 1rem;
+  color: #000;
+  background: #fff;
+}
+
+.circle__inner {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}

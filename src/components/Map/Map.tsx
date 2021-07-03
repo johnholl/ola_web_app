@@ -1,12 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { LatLngExpression } from "leaflet";
-import { MapContainer, TileLayer, Marker, Tooltip, Polyline } from "react-leaflet";
+import React from "react";
+import { LatLngExpression, divIcon, MarkerCluster } from "leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import MarkerClusterGroup from 'react-leaflet-cluster';
 import { connect } from "react-redux";
 import { setPlacePreviewVisibility, setSelectedPlace } from "../../store/actions";
 import { IState, Place } from "../../store/models";
 import AddMarker from "./AddMarker";
 
 import "./Map.css";
+
+
+const generateIcon = (num : number) => {
+  var numstr = ""
+  numstr = num > 1000 ? String(Math.round(num/100)/10 + "k") : String(num)
+  const icon = divIcon({html: '<div class="circle"><span class="circle__inner">' + numstr + '</span></div>', className: 'empty'});
+  return icon;
+}
+
+const generateClusterIcon = function (cluster: MarkerCluster) {
+  const markers = cluster.getAllChildMarkers();
+  let totalQuantity = 0
+  markers.map(marker=>{totalQuantity += Number(marker.options.title)})
+  const icon = generateIcon(totalQuantity);
+  return icon;
+}
+
 
 const Map = ({
   isVisible,
@@ -16,14 +34,6 @@ const Map = ({
   setPlaceForPreview,
 }: any) => {
   const defaultPosition: LatLngExpression = [14.6333308, -90.5499978]; // Guatemala City position
-  const [polyLineProps, setPolyLineProps] = useState([]);
-
-  useEffect(() => {
-    setPolyLineProps(places.reduce((prev: LatLngExpression[], curr: Place) => {
-      prev.push(curr.position);
-      return prev;
-    }, []))
-  }, [places]);
 
   const showPreview = (place: Place) => {
     if (isVisible) {
@@ -57,16 +67,18 @@ const Map = ({
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* <Polyline positions={polyLineProps} /> */}
+        <MarkerClusterGroup iconCreateFunction={generateClusterIcon}>
         {places.map((place: Place) => (
           <Marker
-            key={place.title}
+            icon={generateIcon(place.quantity)}
+            key={place.quantity}
             position={place.position}
+            title={String(place.quantity)}
             eventHandlers={{ click: () => showPreview(place) }}
           >
-            <Tooltip>{place.title}</Tooltip>
           </Marker>
         ))}
+        </MarkerClusterGroup>
         <AddMarker />
       </MapContainer>
     </div>

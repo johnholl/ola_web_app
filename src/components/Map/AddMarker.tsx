@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { LatLng, LatLngExpression } from "leaflet";
+import { LatLng, LatLngExpression, divIcon } from "leaflet";
 import { Marker, useMapEvents } from "react-leaflet";
 import { connect } from "react-redux";
 import {
@@ -7,6 +7,8 @@ import {
   setPrePlaceLocation,
 } from "../../store/actions";
 import { IState } from "../../store/models";
+
+const icon = divIcon({html: '<div class="circle"></div>', className: 'empty'});
 
 const AddMarker = ({ formIsOpen, toggleForm, setLocation }: any) => {
   const [position, setPosition] = useState(
@@ -22,7 +24,7 @@ const AddMarker = ({ formIsOpen, toggleForm, setLocation }: any) => {
   });
 
   return !formIsOpen || position === null ? null : (
-    <Marker position={position}></Marker>
+    <Marker position={position} icon={icon}></Marker>
   );
 };
 
