@@ -108,6 +108,17 @@ const Form = ({
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
+                <label htmlFor="quantity">quantity</label>
+                <Field
+                  id="quantity"
+                  name="quantity"
+                  placeholder="quantity"
+                />
+              </div>
+              {errors.description && <div className="errors">Required</div>}
+            </div>
+            <div className="formGroup">
+              <div className="formGroupInput">
                 <label htmlFor="link">seeMoreLink</label>
                 <Field id="link" name="seeMoreLink" placeholder="link" />
               </div>
