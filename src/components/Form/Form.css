@@ -20,12 +20,14 @@
 
 .form__header {
   padding: 1rem 0.5rem;
-  background-color: #4999a4;
+  background-color: #52B2BF;
   text-align: center;
   position: relative;
   color: white;
+  font-family: halyard-display, sans-serif;
+  font-style: normal;
+  font-weight: 100;
   font-size: 1.2rem;
-  font-weight: bold;
 }
 
 .form__header__close {

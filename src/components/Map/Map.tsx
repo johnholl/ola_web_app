@@ -1,6 +1,6 @@
 import React from "react";
 import { LatLngExpression, divIcon, MarkerCluster } from "leaflet";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, ZoomControl } from "react-leaflet";
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import { connect } from "react-redux";
 import { setPlacePreviewVisibility, setSelectedPlace } from "../../store/actions";
@@ -67,6 +67,7 @@ const Map = ({
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <ZoomControl position="bottomright"/>
         <MarkerClusterGroup iconCreateFunction={generateClusterIcon}>
         {places.map((place: Place) => (
           <Marker
@@ -81,6 +82,9 @@ const Map = ({
         </MarkerClusterGroup>
         <AddMarker />
       </MapContainer>
+      <a href="https://www.olafilter.com">
+      <img src="namedlogo.png" style={{zIndex: 1000, position:"fixed", top:10, left:10, width:100}}/>
+      </a>
     </div>
   );
 };

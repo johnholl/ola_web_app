@@ -4,18 +4,22 @@
 }
 
 .circle {
-  width: 2rem;
-  height: 2rem;
-  line-height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
   border-radius: 50%;
   text-align: center;
-  border: 3px solid #4999a4; 
+  border: 3px solid #52B2BF; 
+  font-family: halyard-display, sans-serif;
+  font-style: normal;
+  font-weight: 100;
   font-size: 1rem;
   color: #000;
   background: #fff;
 }
 
 .circle__inner {
+
   display: inline-block;
   vertical-align: middle;
   line-height: normal;

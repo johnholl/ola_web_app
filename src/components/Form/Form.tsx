@@ -18,6 +18,7 @@ const Form = ({
   addNewPlace: Function;
 }) => {
 
+
   const initialValues = {
     key: "",
     picture: "",
@@ -65,7 +66,7 @@ const Form = ({
         >
           <AiFillCloseCircle />
         </span>
-        <span className="form__header__title">Add new Place</span>
+        <span className="form__header__title">AGREGAR / ADD </span>
       </div>
       <Formik
         initialValues={initialValues}
@@ -76,57 +77,49 @@ const Form = ({
           <FormikForm>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="key">Distributor Key</label>
+                <label htmlFor="key">CLAVE DE SOCIO / PARTNER KEY</label>
                 <Field id="key" name="key" placeholder="" />
               </div>
               {errors.key && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="picture">Picture url</label>
+                <label htmlFor="picture">SUBIR FOTO / UPLOAD PICTURE</label>
                 <Field id="picture" name="picture" placeholder="" />
               </div>
               {errors.picture && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="title"> TÍTULO / TITLE</label>
                 <Field id="title" name="title" placeholder="" />
               </div>
               {errors.title && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="description">description</label>
+                <label htmlFor="description">DESCRIPCIÓN / DESCRIPTION</label>
                 <Field
                   id="description"
                   name="description"
-                  placeholder="description"
+                  placeholder=""
                 />
               </div>
               {errors.description && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="quantity">quantity</label>
+                <label htmlFor="quantity">CANTIDAD / QUANTITY</label>
                 <Field
                   id="quantity"
                   name="quantity"
-                  placeholder="quantity"
+                  placeholder=""
                 />
               </div>
               {errors.description && <div className="errors">Required</div>}
             </div>
-            <div className="formGroup">
-              <div className="formGroupInput">
-                <label htmlFor="link">seeMoreLink</label>
-                <Field id="link" name="seeMoreLink" placeholder="link" />
-              </div>
-              {errors.seeMoreLink && <div className="errors">Required</div>}
-            </div>
-
             <div className="button__container">
-              <button className="form__button" type="submit">Submit</button>
+              <button className="form__button" type="submit">ENVIAR / SUBMIT</button>
             </div>
           </FormikForm>
         )}
