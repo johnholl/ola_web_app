@@ -19,10 +19,14 @@ export interface IState {
 
 export interface Place {
   key: string;
-  picture: string;
+  photoUrl: string;
+  photoName: string;
   title: string;
   description: string;
   seeMoreLink: string;
   position: LatLngExpression;
   quantity: number;
+  partnerName: string;
+  id: string;
+  hide: boolean;
 }

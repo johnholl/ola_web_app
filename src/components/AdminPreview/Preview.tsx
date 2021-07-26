@@ -1,10 +1,27 @@
+import {useState, useEffect} from "react";
 import { connect } from "react-redux";
+import { Switch } from "antd";
 import { setPlacePreviewVisibility } from "../../store/actions";
 import { IState } from "../../store/models";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { fstore } from "../../firebase";
 import "./Preview.css";
 
 const Preview = ({ isVisible, place, closePreview }: any) => {
+
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    console.log("using effect");
+    setHidden(place?.hide);
+}, [place]);
+
+  const onChange = async () => {
+    await fstore.collection("publicplaces").doc(place.id).set({hide: !hidden}, {merge:true});
+    setHidden(!hidden);
+  }
+
+
   return (
     <div
       className={`preview__container preview__container--${
@@ -23,6 +40,10 @@ const Preview = ({ isVisible, place, closePreview }: any) => {
         <div className="preview__description">{place?.description}</div>
         <div style={{display: 'flex'}}>
           <a className="preview__button" href={place?.seeMoreLink} target="_blank" rel="noreferrer">See more</a>
+        </div>
+        <div>
+          <div>public: </div>
+          <Switch checked={!hidden} onChange={onChange}/>
         </div>
       </div>
     </div>

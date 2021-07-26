@@ -6,7 +6,9 @@
 .circle {
   width: 2.5rem;
   height: 2.5rem;
+  line-height: 2.5rem;
   border-radius: 50%;
+  text-align: center;
   border: 3px solid #52B2BF; 
   font-family: halyard-display, sans-serif;
   font-style: normal;
@@ -14,14 +16,11 @@
   font-size: 1rem;
   color: #000;
   background: #fff;
-  display:flex;
-  align-items: center; 
-  justify-content: center;
-
 }
 
 .circle__inner {
+
   display: inline-block;
-  line-height:2.5rem;
-  background-color:red;
+  vertical-align: middle;
+  line-height: normal;
 }

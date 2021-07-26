@@ -7,11 +7,10 @@ import {
   ADD_NEW_PLACE,
 } from "../actions";
 import { PlaceState } from "../models";
-import { data } from "../../data";
 import { LatLngExpression } from "leaflet";
 
 const initialState: PlaceState = {
-  places: data,
+  places: [],
   selectedPlace: null,
   placePreviewsIsVisible: false,
   placeFormIsVisible: false,

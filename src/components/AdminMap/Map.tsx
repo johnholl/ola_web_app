@@ -39,10 +39,10 @@ const Map = ({
 
   useEffect(() => {
     (async function () {
-      const snapshot = await fstore.collection("publicplaces").where("hide", "==", false).get();
+      const snapshot = await fstore.collection("publicplaces").get();
       let plcs : Place[] = []
       snapshot.forEach(doc => {
-        plcs.push(doc.data() as Place);
+        plcs.push({...doc.data(), id: doc.id} as Place);
       })
       setPlaces(plcs);
     })();

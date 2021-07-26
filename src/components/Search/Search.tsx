@@ -18,7 +18,7 @@ const Search = ({ searchIsVisible, places, closeSearch, setSelectedPlace }: any)
       </div>
       <div className="search__list">
         {places.map((place: Place) => (
-        <div key={place.title} className="search__list__item" style={{backgroundImage: `url(${place.picture})`}} onClick={() => setSelectedPlace(place) }>
+        <div key={place.title} className="search__list__item" style={{backgroundImage: `url(${place.photoUrl})`}} onClick={() => setSelectedPlace(place) }>
         </div>
         ))}
       </div>

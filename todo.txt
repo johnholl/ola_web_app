@@ -1,0 +1,36 @@
+
+REDUX ==> FIREBASE
+X Visibility of pop ups (form and preview) should stay in redux
+X place list should be obtained from a firebase call in the Map component
+X placeforpreview can stay in redux
+X Form component should push to firebase instead of update redux
+
+
+OTHER TODOS FOR APP
+* Form needs an upload for image to firebase storage
+* Limit attempts
+* Create Login, duplicate map component
+* align numbers
+
+HOSTING
+* Firebase hosting?
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DUPLICATE MAP / PUBLIC PRIVATE PLACES
+* ola team will have their own admin URL
+* it will be behind a firebase auth Login
+* Each folder (Form, Map, Preview) will be duplicated, with necessary changes to each
+    - map shows all places, not just public
+    - preview allows toggle public / private
+    - preview allows field editing
+    - some kind of filtering / finding mechanism
+
+LIMIT ATTEMPTS
+* On submitting form, call a firebase function. that function will
+    - log requesting IP address
+    - check if IP has multiple (3) failed attempts in last hour
+    - check key against list in firestore
+    - if it fails, add 1 to failure key in IPs document if it exists, otherwise create it
+* Also make a cleanup function that clears IPs at the top of every hour
+

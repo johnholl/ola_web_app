@@ -1,19 +1,11 @@
-import { useState } from "react";
 import { connect } from "react-redux";
-import { message, Upload, Button, Spin, Row } from "antd";
-import { LoadingOutlined, UploadOutlined, CheckCircleOutlined} from '@ant-design/icons';
 import { setPlaceFormVisibility } from "../../store/actions";
 import { IState } from "../../store/models";
 import { AiFillCloseCircle } from "react-icons/ai";
 import "./Form.css";
 import { Field, Formik, Form as FormikForm } from "formik";
 import { LatLng } from "leaflet";
-import { storage, functions } from "../../firebase";
-import makeId from "../../utils";
-
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-
-const addMarker = functions.httpsCallable("addMarker"); 
+import { fstore } from "../../firebase";
 
 const Form = ({
   isVisible,
@@ -25,13 +17,10 @@ const Form = ({
   closeForm: Function;
 }) => {
 
-  const [photoUrl, setPhotoUrl] = useState(false);
-  const [photoName, setPhotoName] = useState("");
-  const [photoLoading, setPhotoLoading] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
 
   const initialValues = {
     key: "",
+    picture: "",
     title: "",
     description: "",
     quantity: ""
@@ -49,66 +38,21 @@ const Form = ({
     }, {});
   };
 
-  const handleOnSubmit = async (values: PlaceFormProps, {resetForm}:{resetForm: any}) => {
-    setSubmitting(true);
-    const result = await addMarker({photoUrl: photoUrl, 
-      photoName: photoName,
-      key: values.key,
-      title: values.title, 
-      description: values.description,
-      quantity: values.quantity,
-      position: position,
-      hide: false})
-    console.log(result);
-    setPhotoUrl(false);
-    setPhotoName("");
-    setSubmitting(false);
-    closeForm();
-    resetForm();
+  const handleOnSubmit = (values: PlaceFormProps, {setSubmitting, resetForm}:{setSubmitting: any, resetForm: any}) => {
+    if(values.key=="VALID"){
+      fstore.collection("publicplaces").add({
+        ...values,
+        position: [position.lat, position.lng]
+      })
+      closeForm();
+      resetForm();
+    }
+    else{
+      console.log("invalid distributor key");
+      closeForm();
+      resetForm();
+    }
   }
-
-    const customUpload = async (options : any) => {
-      const metadata = {
-          contentType: 'image/jpeg'
-      }
-      const storageRef = storage.ref();
-      const imageName = makeId(8); //a unique name for the image
-      const imgFile = storageRef.child(`${imageName}`);
-      try {
-        const image = await imgFile.put(options.file, metadata);
-        const url = await image.ref.getDownloadURL();
-        console.log(url)
-        setPhotoUrl(url);
-        setPhotoName(imageName)
-        setPhotoLoading(false);
-        options.onSuccess(null, image);
-      } catch(e) {
-        options.onError(e);
-      }
-    };
-
-    const beforeUpload = (file: any) => {
-      const isImage = file.type.indexOf('image/') === 0;
-      if (!isImage) {
-        message.error('You can only upload image files');
-      }
-      
-      const isLt20M = file.size / 1024 / 1024 < 20;
-      if (!isLt20M) {
-        message.error('Image must smaller than 20MB');
-      }
-      return isImage && isLt20M;
-    };
-
-    const onChange = (info: any) => {
-      if (info.file.status === 'uploading') {
-        setPhotoLoading(true);
-        return;
-      }
-      if (info.file.status === 'done') {
-        setPhotoLoading(false);
-      };
-      }
 
   return (
     <div
@@ -139,12 +83,11 @@ const Form = ({
               {errors.key && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
-              <div className="formGroupInput" >
-                <Row align="middle" justify="space-around">
-                  <Upload onChange={onChange} beforeUpload={beforeUpload} customRequest={customUpload} itemRender={(d:any)=>{return(<div/>)}}><Button icon={<UploadOutlined />}>{!photoLoading ? "UPLOAD" : <Spin indicator={antIcon} style={{ paddingLeft: 10 }} />}</Button></Upload>
-                  <div>{photoUrl && <CheckCircleOutlined style={{color:"darkgreen", fontSize:"24px"}}/>}</div>
-                </Row>
+              <div className="formGroupInput">
+                <label htmlFor="picture">SUBIR FOTO / UPLOAD PICTURE</label>
+                <Field id="picture" name="picture" placeholder="" />
               </div>
+              {errors.picture && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
@@ -176,8 +119,7 @@ const Form = ({
               {errors.quantity && <div className="errors">Required</div>}
             </div>
             <div className="button__container">
-              <button className="form__button" type="submit">
-                {submitting ? <Spin indicator={antIcon} style={{ paddingLeft: 10 }} /> : "ENVIAR / SUBMIT"}</button>
+              <button className="form__button" type="submit">ENVIAR / SUBMIT</button>
             </div>
           </FormikForm>
         )}
@@ -205,6 +147,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Form);
 
 interface PlaceFormProps {
   [key: string]: string;
+  picture: string;
   title: string;
   description: string;
 }
