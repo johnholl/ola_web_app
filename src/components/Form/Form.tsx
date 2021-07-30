@@ -44,7 +44,6 @@ const Form = ({
       if (!values[curr]) {
         return { ...prev, [curr]: "required" };
       }
-      console.log(prev)
       return prev;
     }, {});
   };
@@ -59,7 +58,6 @@ const Form = ({
       quantity: values.quantity,
       position: position,
       hide: false})
-    console.log(result);
     setPhotoUrl(false);
     setPhotoName("");
     setSubmitting(false);
@@ -77,7 +75,6 @@ const Form = ({
       try {
         const image = await imgFile.put(options.file, metadata);
         const url = await image.ref.getDownloadURL();
-        console.log(url)
         setPhotoUrl(url);
         setPhotoName(imageName)
         setPhotoLoading(false);
@@ -133,7 +130,7 @@ const Form = ({
           <FormikForm>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="key">CLAVE DE SOCIO / PARTNER KEY</label>
+                <label htmlFor="key">Partner Key / Clave de Socio</label>
                 <Field id="key" name="key" placeholder="" />
               </div>
               {errors.key && <div className="errors">Required</div>}
@@ -148,14 +145,14 @@ const Form = ({
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="title"> TÍTULO / TITLE</label>
+                <label htmlFor="title"> Title / Título</label>
                 <Field id="title" name="title" placeholder="" />
               </div>
               {errors.title && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="description">DESCRIPCIÓN / DESCRIPTION</label>
+                <label htmlFor="description">Description / Descripción</label>
                 <Field
                   id="description"
                   name="description"
@@ -166,7 +163,7 @@ const Form = ({
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="quantity">CANTIDAD / QUANTITY</label>
+                <label htmlFor="quantity">Quantity / Cantidad</label>
                 <Field
                   id="quantity"
                   name="quantity"
@@ -177,7 +174,7 @@ const Form = ({
             </div>
             <div className="button__container">
               <button className="form__button" type="submit">
-                {submitting ? <Spin indicator={antIcon} style={{ paddingLeft: 10 }} /> : "ENVIAR / SUBMIT"}</button>
+                {submitting ? <Spin indicator={antIcon} style={{ paddingLeft: 10 }} /> : "Submit / Enviar"}</button>
             </div>
           </FormikForm>
         )}

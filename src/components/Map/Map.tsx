@@ -14,7 +14,8 @@ import "./Map.css";
 const generateIcon = (num : number) => {
   var numstr = ""
   numstr = num >= 1000 ? String(Math.round(num/100)/10 + "k") : String(num)
-  const icon = divIcon({html: '<div class="circle">' + numstr + '</div>', className: 'empty'});
+  const icon = divIcon({html: '<div class="circle"><div class="circle__inner">' + numstr + '</div></div>', className: 'empty'});
+  // const icon = divIcon({html: '<div class="circ">' + numstr + '</div>', className: 'empty'});
   return icon;
 }
 
@@ -70,6 +71,7 @@ const Map = ({
   return (
     <div className="map__container">
       <MapContainer
+        minZoom={3}
         center={defaultPosition}
         zoom={7}
         scrollWheelZoom={true}
@@ -81,7 +83,7 @@ const Map = ({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <ZoomControl position="bottomright"/>
-        <MarkerClusterGroup iconCreateFunction={generateClusterIcon}>
+        <MarkerClusterGroup iconCreateFunction={generateClusterIcon} showCoverageOnHover={false}>
         {places.map((place: Place) => (
           <Marker
             icon={generateIcon(place.quantity)}
@@ -96,8 +98,9 @@ const Map = ({
         <AddMarker />
       </MapContainer>
       <a href="https://www.olafilter.com">
-      <img src="namedlogo.png" style={{zIndex: 1000, position:"fixed", top:10, left:10, width:100, borderRadius:10}}/>
+        <img src="namedlogo.png" style={{zIndex: 1000, position:"fixed", top:10, left:10, width:100, borderRadius:10}}/>
       </a>
+      <img src="ola_banner2.png" style={{zIndex: 1000, position:"fixed", bottom:10, left:10, width:"40%"}}/>
     </div>
   );
 };

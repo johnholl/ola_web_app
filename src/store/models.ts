@@ -27,6 +27,7 @@ export interface Place {
   position: LatLngExpression;
   quantity: number;
   partnerName: string;
+  partnerType: string;
   id: string;
   hide: boolean;
 }

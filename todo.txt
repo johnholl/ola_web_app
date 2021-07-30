@@ -7,10 +7,10 @@ X Form component should push to firebase instead of update redux
 
 
 OTHER TODOS FOR APP
-* Form needs an upload for image to firebase storage
-* Limit attempts
-* Create Login, duplicate map component
-* align numbers
+X Form needs an upload for image to firebase storage
+X Limit attempts
+X Create Login, duplicate map component
+X align numbers
 
 HOSTING
 * Firebase hosting?
@@ -18,19 +18,30 @@ HOSTING
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 DUPLICATE MAP / PUBLIC PRIVATE PLACES
-* ola team will have their own admin URL
-* it will be behind a firebase auth Login
+* ola team will have their own admin URL X
+* it will be behind a firebase auth Login X
 * Each folder (Form, Map, Preview) will be duplicated, with necessary changes to each
-    - map shows all places, not just public
-    - preview allows toggle public / private
+    X map shows all places, not just public 
+    X preview allows toggle public / private
     - preview allows field editing
-    - some kind of filtering / finding mechanism
 
 LIMIT ATTEMPTS
-* On submitting form, call a firebase function. that function will
-    - log requesting IP address
-    - check if IP has multiple (3) failed attempts in last hour
-    - check key against list in firestore
-    - if it fails, add 1 to failure key in IPs document if it exists, otherwise create it
-* Also make a cleanup function that clears IPs at the top of every hour
+X On submitting form, call a firebase function. that function will
+    X log requesting IP address
+    X check if IP has multiple (3) failed attempts in last hour
+    X check key against list in firestore
+    X if it fails, add 1 to failure key in IPs document if it exists, otherwise create it
+X Also make a cleanup function that clears IPs at the top of every hour
 
+
+
+* Filtering / finding mechanism
+menu button to filter by
+    - partner name
+    - partner type
+    - quantity
+    - date created
+
+* Summary placard
+    - total filters
+    - total partners
