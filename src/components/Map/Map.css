@@ -19,6 +19,7 @@
   display: inline-block;
   line-height:2em;
   font: bold 0.85em "helvetica", helvetica;
+  padding-bottom:2px;
   ;
 }
 
@@ -44,4 +45,11 @@
   display: flex; /* or inline-flex */
   align-items: center; 
   justify-content: center;
+}
+
+.ant-collapse-header {
+  height: 70px;
+  width: 240px;
+  font: bold 28px Helvetica, Verdana, Tahoma;
+  color: #52B2BF !important;
 }

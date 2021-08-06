@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { LatLngExpression, divIcon, MarkerCluster } from "leaflet";
 import { MapContainer, TileLayer, Marker, ZoomControl } from "react-leaflet";
 import MarkerClusterGroup from 'react-leaflet-cluster';
+import {Collapse, Row, Col} from 'antd';
 import { connect } from "react-redux";
 import { setPlacePreviewVisibility, setSelectedPlace } from "../../store/actions";
 import { IState, Place } from "../../store/models";
@@ -9,13 +10,14 @@ import AddMarker from "./AddMarker";
 import {fstore} from "../../firebase";
 
 import "./Map.css";
+import makeid from "../../utils";
 
+const {Panel} = Collapse;
 
 const generateIcon = (num : number) => {
   var numstr = ""
   numstr = num >= 1000 ? String(Math.round(num/100)/10 + "k") : String(num)
   const icon = divIcon({html: '<div class="circle"><div class="circle__inner">' + numstr + '</div></div>', className: 'empty'});
-  // const icon = divIcon({html: '<div class="circ">' + numstr + '</div>', className: 'empty'});
   return icon;
 }
 
@@ -87,7 +89,7 @@ const Map = ({
         {places.map((place: Place) => (
           <Marker
             icon={generateIcon(place.quantity)}
-            key={place.quantity}
+            key={place.description}
             position={place.position}
             title={String(place.quantity)}
             eventHandlers={{ click: () => showPreview(place) }}
@@ -100,7 +102,25 @@ const Map = ({
       <a href="https://www.olafilter.com">
         <img src="namedlogo.png" style={{zIndex: 1000, position:"fixed", top:10, left:10, width:100, borderRadius:10}}/>
       </a>
-      <img src="ola_banner2.png" style={{zIndex: 1000, position:"fixed", bottom:10, left:10, width:"40%"}}/>
+      {/* <img src="ola_banner2.png" style={{zIndex: 1000, position:"fixed", bottom:10, left:10, width:"40%"}}/> */}
+      <Collapse
+      expandIconPosition="right"
+      style={{zIndex: 1000, position:"fixed", bottom:10, left:10, borderRadius:"15px"}}
+    >
+      <Panel
+        header="Impact Map"
+        key="1"
+      >
+        <div style={{width:180}}>
+          <Row justify="center" style={{paddingTop:10, fontWeight:"bold"}}>Each Ola Filter</Row>
+          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="tap.png" style={{width:60}}/> <div>Impacts 5 people</div></Row>
+          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="bank.png" style={{width:60}}/> <div style={{width:120}}>Saves families $580</div></Row>
+          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="worldhands.png" style={{width:60}}/> <div style={{width:120}}>Keeps 8,500 plastic bottles out of landfills</div></Row>
+          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="farmer.png" style={{width:60}}/> <div style={{width:120}}>Protects the health of families and the planet</div></Row>
+        </div>
+      </Panel>
+
+    </Collapse>
     </div>
   );
 };

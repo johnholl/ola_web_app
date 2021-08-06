@@ -6,21 +6,43 @@
 .circle {
   width: 2.5rem;
   height: 2.5rem;
-  line-height: 2.5rem;
   border-radius: 50%;
-  text-align: center;
   border: 3px solid #52B2BF; 
-  font-family: halyard-display, sans-serif;
-  font-style: normal;
-  font-weight: 100;
-  font-size: 1rem;
-  color: #000;
   background: #fff;
+  display:flex;
+  align-items: center; 
+  justify-content: center;
+
 }
 
 .circle__inner {
-
   display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
+  line-height:2em;
+  font: bold 0.85em "helvetica", helvetica;
+  padding-bottom:2px;
+  ;
+}
+
+.badge {
+  background: radial-gradient( 5px -9px, circle, white 8%, red 26px );
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 12px; /* one half of ( (border * 2) + height + padding ) */
+  box-shadow: 1px 1px 1px black;
+  color: white;
+  font: bold 15px/13px Helvetica, Verdana, Tahoma;
+  height: 16px; 
+  min-width: 14px;
+  padding: 4px 3px 0 3px;
+  text-align: center;
+}
+
+.circ {
+  background: gold;
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%;
+  display: flex; /* or inline-flex */
+  align-items: center; 
+  justify-content: center;
 }

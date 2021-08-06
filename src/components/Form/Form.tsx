@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { message, Upload, Button, Spin, Row } from "antd";
-import { LoadingOutlined, UploadOutlined, CheckCircleOutlined} from '@ant-design/icons';
+import { message, Upload, Button, Spin, Row, Tooltip} from "antd";
+import { LoadingOutlined, UploadOutlined, InfoCircleOutlined} from '@ant-design/icons';
 import { setPlaceFormVisibility } from "../../store/actions";
 import { IState } from "../../store/models";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -39,9 +39,8 @@ const Form = ({
 
   const validator = (values: PlaceFormProps) => {
     const keys = Object.keys(values);
-
     return keys.reduce((prev, curr) => {
-      if (!values[curr]) {
+      if (!values[curr] && curr !="description") {
         return { ...prev, [curr]: "required" };
       }
       return prev;
@@ -119,7 +118,12 @@ const Form = ({
         >
           <AiFillCloseCircle />
         </span>
-        <span className="form__header__title">AGREGAR / ADD </span>
+        <span className="form__header__title">
+          <Tooltip title="Information in this form, including images, may be used by Ola Filters in social media posts">
+            <InfoCircleOutlined/>
+          </Tooltip>
+          <span style={{paddingLeft: 10}}>Add / Agregar</span>
+        </span>
       </div>
       <Formik
         initialValues={initialValues}
@@ -137,9 +141,10 @@ const Form = ({
             </div>
             <div className="formGroup">
               <div className="formGroupInput" >
-                <Row align="middle" justify="space-around">
-                  <Upload onChange={onChange} beforeUpload={beforeUpload} customRequest={customUpload} itemRender={(d:any)=>{return(<div/>)}}><Button icon={<UploadOutlined />}>{!photoLoading ? "UPLOAD" : <Spin indicator={antIcon} style={{ paddingLeft: 10 }} />}</Button></Upload>
-                  <div>{photoUrl && <CheckCircleOutlined style={{color:"darkgreen", fontSize:"24px"}}/>}</div>
+                <label htmlFor="key">Add Image / Añadir Imagen</label>
+                <Row align="middle" justify="start">
+                  <Upload onChange={onChange} beforeUpload={beforeUpload} customRequest={customUpload}><Button icon={<UploadOutlined />}>{!photoLoading ? "Upload / Subir" : <Spin indicator={antIcon} style={{ paddingLeft: 10 }} />}</Button></Upload>
+                  {/* <div>{photoUrl && <CheckCircleOutlined style={{color:"darkgreen", fontSize:"24px"}}/>}</div> */}
                 </Row>
               </div>
             </div>
@@ -173,7 +178,7 @@ const Form = ({
               {errors.quantity && <div className="errors">Required</div>}
             </div>
             <div className="button__container">
-              <button className="form__button" type="submit">
+              <button className="form__button" type="submit" style={{backgroundColor:"#52b2bf"}}>
                 {submitting ? <Spin indicator={antIcon} style={{ paddingLeft: 10 }} /> : "Submit / Enviar"}</button>
             </div>
           </FormikForm>

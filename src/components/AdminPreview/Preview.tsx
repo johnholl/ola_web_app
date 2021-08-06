@@ -39,7 +39,7 @@ const Preview = ({ isVisible, place, closePreview }: any) => {
         <div className="preview__title">{place?.title}</div>
         <div className="preview__description">{place?.description}</div>
         <div style={{display: 'flex'}}>
-          <a className="preview__button" href={place?.seeMoreLink} target="_blank" rel="noreferrer">See more</a>
+          <a className="preview__button" href={place?.seeMoreLink} target="_blank" rel="noreferrer" style={{backgroundColor:"#52b2bf"}}>See more</a>
         </div>
         <div>
           <div>public: </div>

@@ -30,6 +30,10 @@
   font-size: 1.2rem;
 }
 
+.form__header__title {
+  font-weight: 900
+}
+
 .form__header__close {
   position: absolute;
   right: 1rem;
@@ -46,7 +50,8 @@
 .form__button {
   text-decoration: none;
   font-weight: bold;
-  background-color: #f9b29c;
+  /* background-color: #f9b29c; */
+  background-color: #52b2bf;
   border-radius: 0.5rem;
   appearance: none;
   border: none;

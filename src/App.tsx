@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import PublicPage from './components/PublicPage';
 import AdminPage from './components/AdminPage';
 import Login from './components/Login';
-import UserProvider, {UserContext} from './providers/UserProvider'
+import UserProvider from './providers/UserProvider'
 
 function App() {
   return (
