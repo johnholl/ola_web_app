@@ -43,7 +43,7 @@ export default function LoginScreen(props: any) {
                         >
                         <Input.Password />
                         </Form.Item>
-                
+                        <div style={{color:"red"}}>{errorMessage}</div>
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                         <Button type="primary" htmlType="submit">
                             Submit

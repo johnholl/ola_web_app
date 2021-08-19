@@ -108,14 +108,14 @@ const Map = ({
       style={{zIndex: 1000, position:"fixed", bottom:10, left:10, borderRadius:"15px"}}
     >
       <Panel
-        header="Impact Map"
+        header="Impact at a Glance"
         key="1"
       >
         <div style={{width:180}}>
-          <Row justify="center" style={{paddingTop:10, fontWeight:"bold"}}>Each Ola Filter</Row>
-          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="tap.png" style={{width:60}}/> <div>Impacts 5 people</div></Row>
-          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="bank.png" style={{width:60}}/> <div style={{width:120}}>Saves families $580</div></Row>
-          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="worldhands.png" style={{width:60}}/> <div style={{width:120}}>Keeps 8,500 plastic bottles out of landfills</div></Row>
+          <Row className="impact-header" justify="start">Each Ola Filter</Row>
+          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="tap.png" style={{width:60}}/> <div style={{width:120}}>Benefits the whole family</div></Row>
+          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="bank.png" style={{width:60}}/> <div style={{width:120}}>Saves households hundreds of dollars</div></Row>
+          <Row justify="start" align="middle" style={{paddingTop:10}}><img src="worldhands.png" style={{width:60}}/> <div style={{width:120}}>Replaces thousands of single-use plastic bottles</div></Row>
           <Row justify="start" align="middle" style={{paddingTop:10}}><img src="farmer.png" style={{width:60}}/> <div style={{width:120}}>Protects the health of families and the planet</div></Row>
         </div>
       </Panel>

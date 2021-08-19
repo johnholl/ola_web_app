@@ -30,4 +30,5 @@ export interface Place {
   partnerType: string;
   id: string;
   hide: boolean;
+  dt: number;
 }

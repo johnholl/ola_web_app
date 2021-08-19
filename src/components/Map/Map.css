@@ -48,8 +48,13 @@
 }
 
 .ant-collapse-header {
-  height: 70px;
+  height: 100px;
   width: 240px;
-  font: bold 28px Helvetica, Verdana, Tahoma;
+  font: bold 24px Helvetica, Verdana, Tahoma;
+  color: #52B2BF !important;
+}
+
+.impact-header {
+  font: bold 24px Helvetica, Verdana, Tahoma;
   color: #52B2BF !important;
 }

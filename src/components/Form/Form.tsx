@@ -119,10 +119,10 @@ const Form = ({
           <AiFillCloseCircle />
         </span>
         <span className="form__header__title">
-          <Tooltip title="Information in this form, including images, may be used by Ola Filters in social media posts">
-            <InfoCircleOutlined/>
+        <span>Add / Agregar</span>
+          <Tooltip title={`Be descriptive! Ola Filter will share and highlight your organization and your impact! ¡Sea descriptivo! ¡Ola Filter compartirá y destacará su organización y su impacto!`}>
+            <InfoCircleOutlined style={{paddingLeft:10}}/>
           </Tooltip>
-          <span style={{paddingLeft: 10}}>Add / Agregar</span>
         </span>
       </div>
       <Formik
@@ -140,13 +140,15 @@ const Form = ({
               {errors.key && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
-              <div className="formGroupInput" >
-                <label htmlFor="key">Add Image / Añadir Imagen</label>
-                <Row align="middle" justify="start">
-                  <Upload onChange={onChange} beforeUpload={beforeUpload} customRequest={customUpload}><Button icon={<UploadOutlined />}>{!photoLoading ? "Upload / Subir" : <Spin indicator={antIcon} style={{ paddingLeft: 10 }} />}</Button></Upload>
-                  {/* <div>{photoUrl && <CheckCircleOutlined style={{color:"darkgreen", fontSize:"24px"}}/>}</div> */}
-                </Row>
+              <div className="formGroupInput">
+                <label htmlFor="quantity">Number of filters at this location / Cantidad de filtros distribuidos en este lugar</label>
+                <Field
+                  id="quantity"
+                  name="quantity"
+                  placeholder=""
+                />
               </div>
+              {errors.quantity && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
@@ -157,7 +159,12 @@ const Form = ({
             </div>
             <div className="formGroup">
               <div className="formGroupInput">
-                <label htmlFor="description">Description / Descripción</label>
+                <label htmlFor="description">
+                  Tell us about your project / Cuéntanos de su proyecto
+                  <Tooltip title={`Share the purpose of your project, partner shoutouts, highlights or anecdotes.Comparta el propósito de su proyecto, comentarios de socios, momentos destacados o anécdotas.`}>
+                    <InfoCircleOutlined style={{paddingLeft:10}}/>
+                  </Tooltip>
+                  </label>
                 <Field
                   id="description"
                   name="description"
@@ -167,15 +174,18 @@ const Form = ({
               {errors.description && <div className="errors">Required</div>}
             </div>
             <div className="formGroup">
-              <div className="formGroupInput">
-                <label htmlFor="quantity">Quantity / Cantidad</label>
-                <Field
-                  id="quantity"
-                  name="quantity"
-                  placeholder=""
-                />
+              <div className="formGroupInput" >
+                <label htmlFor="key">Add Image / Añadir Imagen</label>
+                <Row align="middle" justify="start">
+                  <Upload onChange={onChange} 
+                  beforeUpload={beforeUpload} 
+                  customRequest={customUpload}>
+                    <Button icon={<UploadOutlined />}>
+                      {!photoLoading ? "Add / Añadir" : <Spin indicator={antIcon} style={{ paddingLeft: 10 }} />}
+                      </Button>
+                  </Upload>
+                </Row>
               </div>
-              {errors.quantity && <div className="errors">Required</div>}
             </div>
             <div className="button__container">
               <button className="form__button" type="submit" style={{backgroundColor:"#52b2bf"}}>
